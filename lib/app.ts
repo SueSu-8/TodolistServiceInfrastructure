@@ -1,10 +1,17 @@
 #!/usr/bin/env node
+require('dotenv').config()
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import { TodolistServiceInfrastructureStack } from '../lib/todolist_service_infrastructure-stack';
+import { TodolistServiceInfrastructureStack } from './stack/todolist_service_infrastructure-stack';
+
+let USER_SUFFIX: string = ""
+if (process.env.DEV_USER) {
+  USER_SUFFIX = "-" + process.env.DEV_USER;
+}
 
 const app = new cdk.App();
-new TodolistServiceInfrastructureStack(app, 'TodolistServiceInfrastructureStack', {
+new TodolistServiceInfrastructureStack(app, `TodolistServiceInfrastructureStack${USER_SUFFIX}`, {
+  USER_SUFFIX: USER_SUFFIX,
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
    * but a single synthesized template can be deployed anywhere. */

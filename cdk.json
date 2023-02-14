@@ -1,5 +1,5 @@
 {
-  "app": "npx ts-node --prefer-ts-exts bin/todolist_service_infrastructure.ts",
+  "app": "npx ts-node --prefer-ts-exts lib/app.ts",
   "watch": {
     "include": [
       "**"
